@@ -1,30 +1,35 @@
 `use strict`;
-
+let yaJugamos = false;
 let resultadoJugador = 0;
 let resultadoMaquina = 0;
 let deseaJugar;
 let eleccion;
 const jugador = ()=> {
-    if (resultadoJugador == 0 && resultadoMaquina == 0) {
+    if (yaJugamos == false) {
         deseaJugar = confirm(`¿Desea jugar al Piedra, Papel o Tijera?`);
+        yaJugamos = true;
     } else {
         deseaJugar = confirm(`¿Deseas jugar otra vez?`);
     }
     if (deseaJugar == true) {
         juego();
     } else {
-        alert(`Gracias por haber jugado conmigo. El resultado final es Vos:${resultadoJugador} Yo:${resultadoMaquina}`);
-        if (resultadoMaquina > resultadoJugador) {
-            alert (`Te gané la partida jajaja :P`);
-        } else if (resultadoMaquina == resultadoJugador) {
-            let confirmar = confirm (`¿No querés desempatar?`);
-            if (confirmar == true) {
-                juego();
-            } else {
-                alert(`Es que sabés que vas a perder ;)`)
-            }
+        if (resultadoJugador == 0 && resultadoMaquina == 0){
+            alert(`¿Ni arrancamos y ya te vas? ¿Asustado de mí?`);
         } else {
-            alert (`Esta vez me ganaste. Ojo cuando la IA conquiste el mundo porque guardé tu dirección ;)`);
+            alert(`Gracias por haber jugado conmigo. El resultado final es Vos:${resultadoJugador} Yo:${resultadoMaquina}`);
+            if (resultadoMaquina > resultadoJugador) {
+                alert (`Te gané la partida jajaja :P`);
+            } else if (resultadoMaquina == resultadoJugador) {
+                let confirmar = confirm (`¿No querés desempatar?`);
+                if (confirmar == true) {
+                    juego();
+                } else {
+                    alert(`Es que sabés que vas a perder ;)`)
+                }
+            } else {
+                alert (`Esta vez me ganaste. Ojo cuando la IA conquiste el mundo porque guardé tu dirección ;)`);
+            }
         }
     }
 };
@@ -82,6 +87,7 @@ let juego = ()=> {
             break;
         default:
             alert(`Por favor ingresá una opción correcta capo >:(`);
+            jugador();
             break;
     }
 }
